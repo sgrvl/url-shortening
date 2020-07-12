@@ -4,7 +4,12 @@ class Submit extends Component {
 	state = {
 		url: "",
 		short: "",
-		store: [],
+	};
+
+	getShort = (u) => {
+		if (u.hashid !== undefined) {
+			this.setState({ short: u });
+		}
 	};
 
 	handleFetch = (url) => {
@@ -16,11 +21,8 @@ class Submit extends Component {
 			}),
 		})
 			.then((response) => response.json())
-			.then((data) =>
-				this.setState({
-					short: `https://rel.ink/${data.hashid}`,
-				})
-			);
+			.then((data) => this.getShort(data))
+			.catch((error) => console.log(error));
 	};
 
 	handleInput = (event) => {
@@ -31,10 +33,19 @@ class Submit extends Component {
 		this.handleFetch(this.state.url);
 		event.preventDefault();
 		setTimeout(() => {
-			this.setState({ store: this.state.store.concat(this.state.short) });
-		}, 500);
-		this.setState({ url: "" });
+			const short = this.state.short;
+			if (short.url !== undefined) {
+				localStorage.setItem(short.url, `https://rel.ink/${short.hashid}`);
+			}
+			this.setState({
+				url: "",
+			});
+		}, 750);
 	};
+
+	componentDidMount() {
+		Object.entries(localStorage).map((key, value) => console.log(key, value));
+	}
 
 	render() {
 		return (
@@ -44,14 +55,18 @@ class Submit extends Component {
 						type="text"
 						onChange={this.handleInput}
 						value={this.state.url}
+						placeholder="Shorthen a link here..."
 					/>
 					<button type="submit">Submit</button>
 				</form>
 				<div>
-					{this.state.store.map((link, index) => {
+					{Object.entries(localStorage).map((value, key) => {
 						return (
-							<div key={index}>
-								<a href={link}>{link}</a>
+							<div key={key}>
+								<span>{value[0]}</span>
+								<a href={value[1]} target="_blank" rel="noopener noreferrer">
+									{value[1]}
+								</a>
 							</div>
 						);
 					})}
