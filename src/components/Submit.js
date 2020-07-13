@@ -1,14 +1,19 @@
 import React, { Component } from "react";
+import "./Submit.sass";
+import { TextField } from "@material-ui/core";
 
 class Submit extends Component {
 	state = {
 		url: "",
 		short: "",
+		error: false,
 	};
 
 	getShort = (u) => {
-		if (u.hashid !== undefined) {
-			this.setState({ short: u });
+		if (u.hashid) {
+			this.setState({ short: u, error: false });
+		} else {
+			this.setState({ error: true });
 		}
 	};
 
@@ -29,6 +34,7 @@ class Submit extends Component {
 		this.setState({ url: event.target.value });
 	};
 
+	// would like to use async/await instead of setTimeout
 	handleSubmit = (event) => {
 		this.handleFetch(this.state.url);
 		event.preventDefault();
@@ -43,30 +49,31 @@ class Submit extends Component {
 		}, 750);
 	};
 
-	componentDidMount() {
-		Object.entries(localStorage).map((key, value) => console.log(key, value));
-	}
-
 	render() {
 		return (
-			<div>
+			<div className="Submit">
 				<form onSubmit={this.handleSubmit}>
-					<input
-						type="text"
+					<TextField
+						className={this.state.error ? "Error" : "NoError"}
+						variant="outlined"
 						onChange={this.handleInput}
 						value={this.state.url}
 						placeholder="Shorthen a link here..."
+						error={this.state.error}
+						helperText={this.state.error ? "Please add a link" : null}
+						fullWidth
 					/>
-					<button type="submit">Submit</button>
+					<button type="submit">Shorten It!</button>
 				</form>
-				<div>
+				<div className="Links">
 					{Object.entries(localStorage).map((value, key) => {
 						return (
-							<div key={key}>
+							<div className="Links-wrap" key={key}>
 								<span>{value[0]}</span>
 								<a href={value[1]} target="_blank" rel="noopener noreferrer">
 									{value[1]}
 								</a>
+								<button className="Links-Copy">Copy</button>
 							</div>
 						);
 					})}
