@@ -4,7 +4,14 @@
   justify-content: space-between
   align-items: center
  
+.Navbar-Wrap
+  background-color: white
+
 .Navbar
+  max-width: 1440px
+  margin: 0 auto
+  
+  padding: 2em 7.5%
   @include flex()
   
   .Logo
@@ -32,6 +39,9 @@
   display: none 
     
 @media screen and ( max-width: 768px )
+  .Navbar
+    padding: 2em 5%
+    
   .Navbar-Links
     display: none
 

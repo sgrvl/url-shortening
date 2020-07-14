@@ -56,6 +56,7 @@ class Submit extends Component {
 		return (
 			<div className="Submit">
 				<form onSubmit={this.handleSubmit}>
+					<div className="White-bg" />
 					<TextField
 						className={this.state.error ? "Error" : "NoError"}
 						variant="outlined"

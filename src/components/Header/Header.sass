@@ -1,0 +1,42 @@
+.Header-Wrap
+  background-color: white
+  
+.Header
+  padding: 2em 0 2em 7.5%
+  max-width: 1440px  
+  display: flex
+  align-items: center
+  margin: 0 auto 
+  transform: translateY(-2em)
+  text-align: left
+
+  &-Text
+    min-width: 50%
+    padding-right: 5vw
+
+    h1 
+      font-size: 3em
+      line-height: 1.1em
+      margin-bottom: 0.2em
+
+    p 
+      margin-top: 0
+      padding-right: 5vw
+      color: hsl(257, 7%, 63%)
+      
+
+  &-img
+    overflow: visible
+
+
+@media screen and ( max-width: 768px )  
+  .Header
+    flex-direction: column-reverse
+    padding: 2em 5%
+    text-align: center
+
+    &-Text 
+      padding-right: 0
+
+    &-img
+      transform: translateX(20%)
