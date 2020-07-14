@@ -1,0 +1,40 @@
+@mixin flex()
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+ 
+.Navbar
+  @include flex()
+  
+  .Logo
+    overflow: visible
+    margin-right: 1em
+
+  ul 
+    display: flex 
+    list-style: none
+    margin: 0
+    padding: 0
+
+  a 
+    color: hsl(257, 7%, 63%)
+    text-decoration: none
+    margin: 0 1em
+
+    &:hover
+      color: hsl(255, 11%, 22%)
+
+  &-Links
+    @include flex()
+
+.Burger-wrap  
+  display: none 
+    
+@media screen and ( max-width: 768px )
+  .Navbar-Links
+    display: none
+
+  .Burger-wrap
+    display: block
+

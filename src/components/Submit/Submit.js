@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Submit.sass";
 import { TextField } from "@material-ui/core";
+import CopyButton from "./CopyButton";
 
 class Submit extends Component {
 	state = {
@@ -49,6 +50,8 @@ class Submit extends Component {
 		}, 750);
 	};
 
+	onCopy = () => {};
+
 	render() {
 		return (
 			<div className="Submit">
@@ -69,11 +72,13 @@ class Submit extends Component {
 					{Object.entries(localStorage).map((value, key) => {
 						return (
 							<div className="Links-wrap" key={key}>
-								<span>{value[0]}</span>
-								<a href={value[1]} target="_blank" rel="noopener noreferrer">
-									{value[1]}
-								</a>
-								<button className="Links-Copy">Copy</button>
+								<div className="Links-wrap_first">
+									<span>{value[0]}</span>
+									<a href={value[1]} target="_blank" rel="noopener noreferrer">
+										{value[1]}
+									</a>
+								</div>
+								<CopyButton value={value[1]} />
 							</div>
 						);
 					})}

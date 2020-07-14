@@ -1,0 +1,120 @@
+$darkViolet: hsl(257, 27%, 26%)
+$cyan: hsl(180, 66%, 49%)
+$font: hsl(255, 11%, 22%)
+
+@mixin borderRadius()
+  border-radius: 7px
+  
+@mixin buttonMatUI()
+  display: flex
+  justify-content: center
+  align-items: center
+  box-sizing: content-box //from material-UI css  
+  border: none
+  outline: none
+  background-color: $cyan
+  color: white
+  @include borderRadius()
+   
+.button-active
+  background-color: $darkViolet !important
+  
+
+.Submit
+  display: flex
+  flex-direction: column 
+  width: 100% 
+  max-width: 1024px
+  margin: 0 auto
+
+button
+  cursor: pointer
+  &:hover
+    box-shadow: inset 0px 0px 0px 200px rgba(255,255,255,0.25)
+
+form
+  display: flex
+  background: $darkViolet url('bg-shorten-desktop.svg')
+  background-size: cover
+  padding: 5%
+  @include borderRadius()
+
+  .MuiInputBase-root
+    color: inherit
+    font-family: 'Poppins', sans-serif
+    font-size: 1em
+    background-color: white
+    @include borderRadius()
+
+  button
+    width: 20%
+    height: 1.1876em
+    margin-left: 2%
+    padding: 18.5px 14px //from material-UI css
+    font-size: 1em
+    @include buttonMatUI()
+
+.Links
+  &-wrap
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-color: white 
+    padding: 1em
+    margin: 5% 0
+    @include borderRadius() 
+
+    &_first
+      width: 100%
+      display: flex
+      justify-content: space-between
+      flex-wrap: wrap
+
+    a 
+      text-decoration: none
+      color: $cyan
+
+  &-Copy
+    height: 3em
+    width: 10%
+    border: none
+    margin-left: 2%
+    @include buttonMatUI()
+
+@media screen and ( max-width: 768px )  
+  form    
+    background: $darkViolet url('bg-shorten-mobile.svg') no-repeat top right
+    padding: 5% 
+    flex-wrap: wrap
+
+    .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline
+      border: 2px solid red
+      
+    button
+      width: 100%
+      margin-left: 0
+      margin-top: 5%
+
+  .Links
+    &-wrap
+      flex-wrap: wrap
+
+    span
+      margin-bottom: 2%
+
+    a 
+      margin-bottom: 2%
+
+    &-Copy
+      margin-top: 2%
+      margin-left: 0
+      width: 100%
+
+.NoError
+  color: $font
+
+.Error
+  color: red
+
+
+

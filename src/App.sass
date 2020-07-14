@@ -8,8 +8,16 @@ $background: hsl(0, 0%, 92%)
   font-family: 'Poppins', sans-serif
   color: $font
 
+body
+  background-color: $background
+
 .App
   text-align: center
-  padding: 5%
+  padding: 2em 7.5%
   font-size: 18px
-  background-color: $background
+  max-width: 1440px
+  margin: 0 auto
+
+@media screen and ( max-width: 768px )
+  .App
+    padding: 2em 5%
