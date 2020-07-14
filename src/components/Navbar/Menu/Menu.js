@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Menu.sass";
 
 class Menu extends Component {
-	state = {};
 	render() {
 		return (
 			<div className={this.props.open ? "Menu Open" : "Menu Close"}>
