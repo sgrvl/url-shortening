@@ -35,7 +35,6 @@ class Submit extends Component {
 		this.setState({ url: event.target.value });
 	};
 
-	// would like to use async/await instead of setTimeout
 	handleSubmit = (event) => {
 		this.handleFetch(this.state.url);
 		event.preventDefault();
