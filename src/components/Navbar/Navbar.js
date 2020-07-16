@@ -12,9 +12,9 @@ class Navbar extends Component {
 
 	render() {
 		return (
-			<div className="Navbar-Wrap">
+			<div className="Navbar-Wrap" name="top">
 				<div className="Navbar">
-					<Logo className="Logo" />
+					<Logo className="Logo" style={{ fill: "#34313D" }} />
 					<div className="Navbar-Links">
 						<ul>
 							<li>
