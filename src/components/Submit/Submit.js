@@ -70,6 +70,8 @@ class Submit extends Component {
 				</form>
 				<div className="Links">
 					{Object.entries(localStorage).map((value, key) => {
+						console.log(key, value);
+
 						return (
 							<div className="Links-wrap" key={key}>
 								<div className="Links-wrap_first">

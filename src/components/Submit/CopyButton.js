@@ -9,6 +9,9 @@ class CopyButton extends Component {
 
 	handleCopy = () => {
 		this.setState({ copied: true });
+		setTimeout(() => {
+			this.setState({ copied: false });
+		}, 1250);
 	};
 
 	render() {
