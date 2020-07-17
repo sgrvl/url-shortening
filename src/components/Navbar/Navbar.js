@@ -18,17 +18,17 @@ class Navbar extends Component {
 					<div className="Navbar-Links">
 						<ul>
 							<li>
-								<a href="null">Features</a>
+								<a href="/">Features</a>
 							</li>
 							<li>
-								<a href="null">Pricing</a>
+								<a href="/">Pricing</a>
 							</li>
 							<li>
-								<a href="null">Resources</a>
+								<a href="/">Resources</a>
 							</li>
 						</ul>
 						<div>
-							<a href="null">Login</a>
+							<a href="/">Login</a>
 							<RoundButton value="Sign Up" />
 						</div>
 					</div>

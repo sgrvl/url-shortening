@@ -68,6 +68,7 @@ form
 .Links
   &-wrap
     display: flex
+    text-align: left    
     justify-content: space-between
     align-items: center
     background-color: white 
@@ -111,10 +112,14 @@ form
 
   .Links
     &-wrap
+      min-width: 0
       flex-wrap: wrap
 
     span
       margin-bottom: 2%
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
 
     a 
       margin-bottom: 2%

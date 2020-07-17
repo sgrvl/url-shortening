@@ -10,35 +10,22 @@ class Submit extends Component {
 		error: false,
 	};
 
-	getShort = (u) => {
-		if (u.hashid) {
-			this.setState({ short: u, error: false });
-		} else {
-			this.setState({ error: true });
-		}
-	};
-
-	handleFetch = (url) => {
-		fetch("https://rel.ink/api/links/", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				url: url,
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => this.getShort(data))
-			.catch((error) => console.log(error));
-	};
-
 	handleInput = (event) => {
 		this.setState({ url: event.target.value });
 	};
 
 	handleSubmit = (event) => {
-		this.handleFetch(this.state.url);
 		event.preventDefault();
-		setTimeout(() => {
+
+		const getShort = (u) => {
+			if (u.hashid) {
+				this.setState({ short: u, error: false });
+			} else {
+				this.setState({ error: true });
+			}
+		};
+
+		const toLocalStorage = () => {
 			const short = this.state.short;
 			if (short.url !== undefined) {
 				localStorage.setItem(short.url, `https://rel.ink/${short.hashid}`);
@@ -46,10 +33,24 @@ class Submit extends Component {
 			this.setState({
 				url: "",
 			});
-		}, 750);
-	};
+		};
 
-	onCopy = () => {};
+		async function postFetch(url) {
+			let response = await fetch("https://rel.ink/api/links/", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					url: url,
+				}),
+			});
+
+			await response.json().then((data) => getShort(data));
+
+			toLocalStorage();
+		}
+
+		postFetch(this.state.url);
+	};
 
 	render() {
 		return (
@@ -70,8 +71,6 @@ class Submit extends Component {
 				</form>
 				<div className="Links">
 					{Object.entries(localStorage).map((value, key) => {
-						console.log(key, value);
-
 						return (
 							<div className="Links-wrap" key={key}>
 								<div className="Links-wrap_first">
